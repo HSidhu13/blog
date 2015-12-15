@@ -1,17 +1,17 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\Tag;
+use App\Model\Entity\Comment;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Tags Model
+ * Comments Model
  *
  */
-class TagsTable extends Table
+class CommentsTable extends Table
 {
 
     /**
@@ -24,7 +24,9 @@ class TagsTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('tags');
+        $this->table('comments');
+        $this->displayField('commentID');
+        $this->primaryKey('commentID');
 
         $this->addBehavior('Timestamp');
 
@@ -39,23 +41,23 @@ class TagsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->add('tagID', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('tagID', 'create')
-            ->notEmpty('tagID');
+            ->add('commentID', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('commentID', 'create');
 
         $validator
-            ->requirePresence('tagName', 'create')
-            ->notEmpty('tagName');
-
-        $validator
-            ->add('articalID', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('articalID', 'create')
-            ->notEmpty('articalID');
+            ->add('approved', 'valid', ['rule' => 'boolean'])
+            ->allowEmpty('approved');
 
         $validator
             ->add('userID', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('userID', 'create')
-            ->notEmpty('userID');
+            ->allowEmpty('userID');
+
+        $validator
+            ->add('articleID', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('articleID');
+
+        $validator
+            ->allowEmpty('body');
 
         return $validator;
     }
