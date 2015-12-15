@@ -25,6 +25,8 @@ class TagsTable extends Table
         parent::initialize($config);
 
         $this->table('tags');
+        $this->displayField('tagID');
+        $this->primaryKey('tagID');
 
         $this->addBehavior('Timestamp');
 
@@ -40,8 +42,7 @@ class TagsTable extends Table
     {
         $validator
             ->add('tagID', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('tagID', 'create')
-            ->notEmpty('tagID');
+            ->allowEmpty('tagID', 'create');
 
         $validator
             ->requirePresence('tagName', 'create')

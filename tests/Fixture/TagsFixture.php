@@ -23,6 +23,9 @@ class TagsFixture extends TestFixture
         'userID' => ['type' => 'integer', 'length' => 10, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
+        '_constraints' => [
+            'primary' => ['type' => 'primary', 'columns' => ['tagID'], 'length' => []],
+        ],
         '_options' => [
             'engine' => 'InnoDB',
             'collation' => 'latin1_swedish_ci'
@@ -41,8 +44,8 @@ class TagsFixture extends TestFixture
             'tagName' => 'Lorem ipsum dolor sit amet',
             'articalID' => 1,
             'userID' => 1,
-            'created' => '2015-12-15 06:05:11',
-            'modified' => '2015-12-15 06:05:11'
+            'created' => '2015-12-15 06:09:32',
+            'modified' => '2015-12-15 06:09:32'
         ],
     ];
 }
